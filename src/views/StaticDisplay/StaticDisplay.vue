@@ -144,13 +144,15 @@
           return dataTable;
       },
       getDevData(){
-        this.$router.push({path:'/active',query:{devID:this.$route.query.devID}})
+        const devID=JSON.parse(sessionStorage.getItem('devInfo')).devID
+        console.log(devID);
+        this.$router.push({path:'/active',query:{devID:devID}})
       }
     },
     mounted() {
       const UserID=JSON.parse(sessionStorage.getItem('UserID'))
       this.devInfo=JSON.parse(sessionStorage.getItem('devInfo'))
-      getDevLastData(UserID,this.$route.query.devID).then(res=>{
+      getDevLastData(UserID,this.devInfo.devID).then(res=>{
         this.devLastData=res.data.devLastData[0]
         if(this.devLastData.CSQ>=25) this.devLastData.CSQ='优'
         else if(this.devLastData.CSQ>=20) this.devLastData.CSQ='良'

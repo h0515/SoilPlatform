@@ -17,7 +17,7 @@
         }
     },
      mounted() {
-        this.event = JSON.parse(localStorage.getItem('devPosition'));
+        this.event = JSON.parse(sessionStorage.getItem('devPosition'));
         setTimeout(async() => {
             await this.initAMap(this.event);
             window.closeInfoWindow = () => {

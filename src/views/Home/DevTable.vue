@@ -39,7 +39,7 @@
             <el-table-column
             prop="position"
             label="安装位置"
-            width="180">
+            width="190">
             </el-table-column>
             <el-table-column
             
@@ -66,7 +66,7 @@
         },
         methods:{
           showDetail(row){
-              this.$router.push({path:'/static',query:{devID:row.devID}})
+              this.$router.push('/static')
               sessionStorage.setItem('devInfo',JSON.stringify(row))
           },
         changeDevName(row) {
@@ -111,7 +111,7 @@
 
                     return item
             })
-            localStorage.setItem('devPosition',JSON.stringify(res.data.devList))  
+            sessionStorage.setItem('devPosition',JSON.stringify(res.data.devList))  
             }) 
           },
         },
