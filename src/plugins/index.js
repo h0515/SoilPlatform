@@ -17,6 +17,7 @@ import {
 	Form,
 	FormItem,
 	MessageBox,
+	Tooltip
 		} from 'element-ui';
 Vue.use(Button)
 Vue.use(Input)
@@ -33,5 +34,6 @@ Vue.use(Divider)
 Vue.use(DatePicker)
 Vue.use(FormItem)
 Vue.use(Form)
+Vue.use(Tooltip)
 Vue.prototype.$message = Message;
 Vue.prototype.$prompt = MessageBox.prompt;

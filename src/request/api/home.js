@@ -25,3 +25,17 @@ export function setName(userID,devID,AliasName){
 		}
 	})
 }
+export function changePwd(name,opwd,npwd){
+	return service({
+		method:'POST',
+		url:`/changePWD`,
+		data:{
+			name,
+			opwd,
+			npwd
+		},
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		}
+	})
+}

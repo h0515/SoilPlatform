@@ -73,6 +73,7 @@ export default {
                   sessionStorage.setItem('UserID',JSON.stringify(res.data.UserID))
                   sessionStorage.setItem('token',JSON.stringify(res.data.UserID))
                   sessionStorage.setItem('UserName',JSON.stringify(this.name))
+                  sessionStorage.setItem('UserPwd',JSON.stringify(this.pwd))
                   //console.log(this.name);
                   this.$router.push('/')
                 },300)
