@@ -89,7 +89,7 @@
                 if(clusterCount>1){
                     context.marker.setOffset(new AMap.Pixel(-18, -18));
                     context.marker.setContent(
-                        `<div style="position: relative; width: 48px; height: 48px; background: url(http://api.map.baidu.com/library/TextIconOverlay/1.2/src/images/m0.png); background-size: cover;">
+                        `<div style="position: relative; width: 48px; height: 48px; background: url(	https://webapi.amap.com/theme/v1.3/m3.png); background-size: cover;">
                             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                                 ${clusterCount}
                             </div>
@@ -100,7 +100,7 @@
                 else{
                     context.marker.setOffset(new AMap.Pixel(-9.5, -32));
                     context.marker.setContent(
-                            '<img width="19px" height="32px" src="//webapi.amap.com/theme/v1.3/markers/b/mark_bs.png"></img>'
+                            '<img width="19px" height="32px" src="https://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png"></img>'
                     );
                     context.marker.on('click', (e) => {
                         const UserID=JSON.parse(sessionStorage.getItem('UserID'));

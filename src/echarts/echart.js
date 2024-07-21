@@ -2,6 +2,203 @@ import * as echarts from 'echarts';
 import china from './map/json/china.json';
 
 export function lineEcharts(id,data) {
+  var myChart = echarts.init(document.getElementById(id));
+  //配置图表
+  const colors = ['#5470C6', '#91CC75', '#EE6666'];
+  if(data.ec!==undefined){
+      var option = {
+        color: colors,
+        title: {
+          text: '土壤参数图'
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross'
+          }
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
+        legend: {
+          data: ['土壤温度', '土壤湿度', '土壤电导率']
+        },
+        xAxis: [
+          {
+            type: 'category',
+            axisTick: {
+              alignWithLabel: true
+            },
+            // prettier-ignore
+            data: data.depth
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            name: '土壤温度',
+            position: 'left',
+            alignTicks: true,
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: colors[0]
+              }
+            },
+            axisLabel: {
+              formatter: '{value} ml'
+            }
+          },
+          {
+            type: 'value',
+            name: '土壤湿度',
+            position: 'left',
+            alignTicks: true,
+            offset: 80,
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: colors[1]
+              }
+            },
+            axisLabel: {
+              formatter: '{value} ml'
+            }
+          },
+          {
+            type: 'value',
+            name: '土壤电导率',
+            position: 'right',
+            alignTicks: true,
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: colors[2]
+              }
+            },
+            axisLabel: {
+              formatter: '{value} °C'
+            }
+          }
+        ],
+          series: [
+            {
+              name: '土壤温度',
+              type: 'bar',
+              data: data.temp,
+              
+            },
+            {
+              name: '土壤湿度',
+              type: 'bar',
+              data: data.swc,
+              yAxisIndex: 1,
+            },
+            {
+              name: '土壤电导率',
+              type: 'line',
+              data: data.ec,
+              yAxisIndex: 2,
+            }
+          ]
+        }
+      myChart.setOption(option);
+      
+      return
+  } 
+  var option = {
+      title: {
+        text: '土壤参数图'
+      },
+      tooltip: {
+        trigger: 'axis',
+          axisPointer: {
+            type: 'cross'
+          }
+      },
+      legend: {
+        data: ['土壤温度', '土壤湿度']
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      toolbox: {
+        feature: {
+          saveAsImage: {}
+        }
+      },
+      xAxis: {
+        type: 'category',
+        axisTick: {
+          alignWithLabel: true
+        },
+        //boundaryGap: false,
+        data: data.depth
+      },
+      yAxis: [
+        {
+          type: 'value',
+          name: '土壤温度',
+          position: 'left',
+          alignTicks: true,
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: colors[0]
+            }
+          },
+          axisLabel: {
+            formatter: '{value} °C'
+          }
+        },
+        {
+          type: 'value',
+          name: '土壤湿度',
+          position: 'right',
+          alignTicks: true,
+          //offset: 80,
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: colors[1]
+            }
+          },
+          axisLabel: {
+            formatter: '{value} %'
+          }
+        }],
+      series: [
+        {
+          name: '土壤温度',
+          type: 'bar',
+          data: data.temp
+        },
+        {
+          name: '土壤湿度',
+          type: 'bar',
+          data: data.swc,
+          yAxisIndex: 1,
+        }
+      ]
+    }
+  myChart.setOption(option);
+  window.addEventListener("resize",()=> {//监听浏览器窗口大小
+    myChart.resize();
+  });
+}
+
+export function lineEcharts1(id,data) {
     var myChart = echarts.init(document.getElementById(id));
     //配置图表
     if(data.ec!==undefined){

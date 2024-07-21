@@ -3,6 +3,7 @@
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>土壤墒情监测平台</span>
+        <img src="../assets/CAU.png" alt="" style="width: .5rem;height: .6rem;margin-left: 0.4rem;"></img>
       </div>
       <div class="main">
         <form>
@@ -114,7 +115,7 @@ export default {
       display:flex;
       justify-content: center;
       span{
-        font-size: 0.3rem;
+        font-size: 0.35rem;
         font-weight: bold;
         color: black;
       }

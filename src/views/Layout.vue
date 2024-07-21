@@ -94,7 +94,7 @@ export default {
     width: 9.6rem;
     font-size: 0.4rem;
     line-height: 0.8rem;
-    margin-left: 0.8rem;
+    margin-left: 0.4rem;
     i{
       margin-right: .15rem;
     }

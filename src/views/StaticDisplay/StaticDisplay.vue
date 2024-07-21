@@ -18,7 +18,13 @@
         <el-descriptions-item label="设备电量">
           <el-progress text-color="#fff" :text-inside="true" :stroke-width="28" :percentage="devLastData?.POWER" :color="customColors"></el-progress>
         </el-descriptions-item>
-        <el-descriptions-item label="信号质量">{{devLastData.CSQ}}</el-descriptions-item>
+        <el-descriptions-item label="信号质量">
+          <img v-if="devLastData.CSQ=='极优'" src="@/assets/strong5.png" style="height: 0.3rem;width: 0.4rem;margin-right: 0.2rem;" />
+          <img v-else-if="devLastData.CSQ=='优'" src="@/assets/strong4.png" style="height: 0.3rem;width: 0.4rem;margin-right: 0.2rem;" />
+          <img v-else-if="devLastData.CSQ=='良'" src="@/assets/strong3.png" style="height: 0.3rem;width: 0.4rem;margin-right: 0.2rem;" />
+          <img v-else-if="devLastData.CSQ=='中'" src="@/assets/strong2.png" style="height: 0.3rem;width: 0.4rem;margin-right: 0.2rem;" />
+          <img v-else src="@/assets/strong1.png" style="height: 0.3rem;width: 0.4rem;margin-right: 0.2rem;" />
+        </el-descriptions-item>
         <el-descriptions-item label="空气温度">{{devLastData.DataAT ? `${devLastData.DataAT}°C`: '暂无数据'}}</el-descriptions-item>
         <el-descriptions-item label="空气压强">{{devLastData.DataATM ? `${(devLastData.DataATM/1000).toFixed(2)}kPa` : '暂无数据'}}</el-descriptions-item>
       </el-descriptions>
@@ -94,6 +100,7 @@
         devInfo:[],
         tableData: [],
         realPosition: '',
+        strongUrl:'@/assets/strong1.png',
         echartsData: {
         },
         customColors: [
@@ -154,7 +161,8 @@
       this.devInfo=JSON.parse(sessionStorage.getItem('devInfo'))
       getDevLastData(UserID,this.devInfo.devID).then(res=>{
         this.devLastData=res.data.devLastData[0]
-        if(this.devLastData.CSQ>=25) this.devLastData.CSQ='优'
+        if(this.devLastData.CSQ>=30) this.devLastData.CSQ='极优'
+        else if(this.devLastData.CSQ>=25) this.devLastData.CSQ='优'
         else if(this.devLastData.CSQ>=20) this.devLastData.CSQ='良'
         else if(this.devLastData.CSQ>=15) this.devLastData.CSQ='中'
         else this.devLastData.CSQ='差'
